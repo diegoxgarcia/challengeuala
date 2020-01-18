@@ -22,4 +22,13 @@
         android:id="@+id/menu_all"
         android:title="Todos" />
 
+
+    <item
+        android:id="@+id/menu_linear"
+        android:title="Linear" />
+
+    <item
+        android:id="@+id/menu_grid"
+        android:title="Grid" />
+
 </menu>

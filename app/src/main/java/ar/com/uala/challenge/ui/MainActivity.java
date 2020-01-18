@@ -3,6 +3,7 @@ package ar.com.uala.challenge.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -84,6 +85,47 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 return true;
+
+            case R.id.menu_linear:
+                booksLayoutMgr = new LinearLayoutManager(this);
+                booksRecyclerView.setLayoutManager(booksLayoutMgr);
+
+                mainViewModel.getAllBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter = new BookRecyclerViewAdapter(bookEntities, R.layout.book_item_recyclerview, new BookRecyclerViewAdapter.BookRecyclerViewListener() {
+                            @Override
+                            public void itemOnClick(View v, int position) {
+                                BookEntity be = bookEntities.get(position);
+                                goToDetailBookActivity(be.getId());
+                            }
+                        });
+                        booksRecyclerView.setAdapter(rvBooksAdapter);
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+
+            case R.id.menu_grid:
+                booksLayoutMgr = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
+                booksRecyclerView.setLayoutManager(booksLayoutMgr);
+
+                mainViewModel.getAllBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter = new BookRecyclerViewAdapter(bookEntities, R.layout.book_item_recyclerview, new BookRecyclerViewAdapter.BookRecyclerViewListener() {
+                            @Override
+                            public void itemOnClick(View v, int position) {
+                                BookEntity be = bookEntities.get(position);
+                                goToDetailBookActivity(be.getId());
+                            }
+                        });
+                        booksRecyclerView.setAdapter(rvBooksAdapter);
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -109,6 +151,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
+
+
     private void getAllBooks(){
         mainViewModel.getAllBooks().observe(this, new Observer<List<BookEntity>>() {
             @Override
