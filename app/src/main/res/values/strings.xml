@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Challenge</string>
+    <string name="bienvenida">Bienvenido a la biblioteca Ualá</string>
+    <string name="imagen_de_libro">Imagen de libro</string>
+    <string name="nombre_de_libro">Nombre de Libro</string>
+    <string name="nombre_de_autor">Nombre de Autor</string>
 </resources>
