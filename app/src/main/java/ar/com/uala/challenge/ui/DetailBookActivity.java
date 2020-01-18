@@ -37,10 +37,12 @@ public class DetailBookActivity extends AppCompatActivity {
                     TextView tvName = findViewById(R.id.tvBookName);
                     TextView tvAuthor = findViewById(R.id.tvAuthorName);
                     TextView tvEstado = findViewById(R.id.tvEstado);
+                    TextView tvPop = findViewById(R.id.tvPop);
 
                     BookEntity be = bookEntities.get(0);
                     tvName.setText(be.getNombre());
                     tvAuthor.setText(be.getAutor());
+                    tvPop.setText("Popularidad: " + be.getPopularidad());
                     tvEstado.setText(be.isDisponibilidad() ? "Disponible" : "No Disponible");
 
                     if(!"".equals(be.getImagen())){

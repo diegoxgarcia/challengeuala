@@ -9,4 +9,17 @@
         android:id="@+id/menu_desc"
         android:title="Descendente" />
 
+
+    <item
+        android:id="@+id/menu_disp"
+        android:title="Disponibles" />
+
+    <item
+        android:id="@+id/menu_nodisp"
+        android:title="No Disponibles" />
+
+    <item
+        android:id="@+id/menu_all"
+        android:title="Todos" />
+
 </menu>

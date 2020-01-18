@@ -29,6 +29,16 @@ public class MainViewModel extends AndroidViewModel {
         return allRetrofitBooks;
     }
 
+    public LiveData<List<BookEntity>> getAllAvailableBooks(){
+        allBooks = bookRepository.getAllAvailableBooks();
+        return allBooks;
+    }
+
+    public LiveData<List<BookEntity>> getAllNoAvailableBooks(){
+        allBooks = bookRepository.getAllNoAvailableBooks();
+        return allBooks;
+    }
+
     public LiveData<List<BookEntity>> getAllBooks(){
         allBooks = bookRepository.getAllByPopularidad();
         return allBooks;

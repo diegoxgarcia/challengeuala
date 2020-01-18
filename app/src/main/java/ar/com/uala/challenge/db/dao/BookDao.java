@@ -28,4 +28,11 @@ public interface BookDao {
     @Query("SELECT * FROM book_table WHERE id = :id")
     LiveData<List<BookEntity>> getBookById(int id);
 
+
+    @Query("SELECT * FROM book_table WHERE disponibilidad = 1")
+    LiveData<List<BookEntity>> getBooksAvailable();
+
+    @Query("SELECT * FROM book_table WHERE disponibilidad = 0")
+    LiveData<List<BookEntity>> getBooksNoAvailable();
+
 }

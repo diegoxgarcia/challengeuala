@@ -57,6 +57,33 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 return true;
+
+            case R.id.menu_disp:
+                mainViewModel.getAllAvailableBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+
+            case R.id.menu_nodisp:
+                mainViewModel.getAllNoAvailableBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+
+            case R.id.menu_all:
+                mainViewModel.getAllBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

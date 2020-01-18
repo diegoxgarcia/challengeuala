@@ -25,6 +25,9 @@ public class BookRepository {
     private BookDao bookDao;
     private LiveData<List<BookEntity>> books;
     private LiveData<List<BookEntity>> booksAsc;
+    private LiveData<List<BookEntity>> availableBooks;
+    private LiveData<List<BookEntity>> noAvailableBooks;
+
 
     public BookRepository(Application application) {
         BookRoomDatabase db = BookRoomDatabase.getDatabase(application);
@@ -44,6 +47,15 @@ public class BookRepository {
         return booksAsc;
     }
 
+    public LiveData<List<BookEntity>> getAllAvailableBooks(){
+        availableBooks = bookDao.getBooksAvailable();
+        return availableBooks;
+    }
+
+    public LiveData<List<BookEntity>> getAllNoAvailableBooks(){
+        noAvailableBooks = bookDao.getBooksNoAvailable();
+        return noAvailableBooks;
+    }
 
     public void insertBooks(List<Books> books){
         new InsertBooksTask(bookDao).execute(books);
