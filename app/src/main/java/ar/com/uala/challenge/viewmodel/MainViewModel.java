@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.security.AllPermission;
 import java.util.List;
 
 import ar.com.uala.challenge.BookRepository;
@@ -30,6 +31,11 @@ public class MainViewModel extends AndroidViewModel {
 
     public LiveData<List<BookEntity>> getAllBooks(){
         allBooks = bookRepository.getAllByPopularidad();
+        return allBooks;
+    }
+
+    public LiveData<List<BookEntity>> getAllBooksAsc(){
+        allBooks = bookRepository.getAllByPopularidadAsc();
         return allBooks;
     }
 

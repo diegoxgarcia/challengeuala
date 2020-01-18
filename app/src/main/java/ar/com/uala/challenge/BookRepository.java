@@ -24,6 +24,7 @@ public class BookRepository {
 
     private BookDao bookDao;
     private LiveData<List<BookEntity>> books;
+    private LiveData<List<BookEntity>> booksAsc;
 
     public BookRepository(Application application) {
         BookRoomDatabase db = BookRoomDatabase.getDatabase(application);
@@ -37,6 +38,11 @@ public class BookRepository {
     public LiveData<List<BookEntity>> getAllByPopularidad(){
         return books;
     };
+
+    public LiveData<List<BookEntity>> getAllByPopularidadAsc(){
+        booksAsc = bookDao.getAllOrderByPopularidadAsc();
+        return booksAsc;
+    }
 
 
     public void insertBooks(List<Books> books){

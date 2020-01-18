@@ -21,6 +21,10 @@ public interface BookDao {
     @Query("SELECT * FROM book_table ORDER BY popularidad DESC")
     LiveData<List<BookEntity>> getAllOrderByPopularidad();
 
+    @Query("SELECT * FROM book_table ORDER BY popularidad ASC")
+    LiveData<List<BookEntity>> getAllOrderByPopularidadAsc();
+
+
     @Query("SELECT * FROM book_table WHERE id = :id")
     LiveData<List<BookEntity>> getBookById(int id);
 

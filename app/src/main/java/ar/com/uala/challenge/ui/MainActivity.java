@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -25,7 +29,38 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager booksLayoutMgr;
     private BookRecyclerViewAdapter rvBooksAdapter;
 
+
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.filter_menu, menu);
+        return true;
+    }
+
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_asc:
+                mainViewModel.getAllBooksAsc().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+            case R.id.menu_desc:
+                mainViewModel.getAllBooks().observe(this, new Observer<List<BookEntity>>() {
+                    @Override
+                    public void onChanged(List<BookEntity> bookEntities) {
+                        rvBooksAdapter.setNewBooks(bookEntities);
+                    }
+                });
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
