@@ -48,7 +48,10 @@ public class BookRepository {
         new DeleteAllBooksTask(bookDao).execute();
     }
 
-
+    public LiveData<List<BookEntity>> getBookById(int id){
+        books = bookDao.getBookById(id);
+        return books;
+    }
 
 
     // AsyncTask for Books

@@ -13,6 +13,7 @@ import android.view.View;
 import java.util.List;
 
 import ar.com.uala.challenge.R;
+import ar.com.uala.challenge.constants.Constants;
 import ar.com.uala.challenge.db.entity.BookEntity;
 import ar.com.uala.challenge.retrofit.Books;
 import ar.com.uala.challenge.viewmodel.MainViewModel;
@@ -54,12 +55,19 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void itemOnClick(View v, int position) {
                         BookEntity be = bookEntities.get(position);
+                        goToDetailBookActivity(be.getId());
                     }
                 });
                 booksRecyclerView.setAdapter(rvBooksAdapter);
                 rvBooksAdapter.setNewBooks(bookEntities);
             }
         });
+    }
+
+    private void goToDetailBookActivity(int idBook){
+        Intent intent = new Intent(MainActivity.this, DetailBookActivity.class);
+        intent.putExtra("idBook", idBook);
+        startActivityForResult(intent, Constants.DETAIL_RESULT_ACTIVITY_REQUEST_CODE);
     }
 
 

@@ -62,7 +62,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         private ImageView ivImageBook;
         private TextView tvBookName;
         private TextView tvAuthorName;
-        private TextView tvPopularidad;
+        private TextView tvPop;
         private TextView tvEstado;
 
         public ViewHolder(@NonNull View itemView) {
@@ -70,7 +70,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
             ivImageBook = itemView.findViewById(R.id.ivBookImage);
             tvBookName = itemView.findViewById(R.id.tvBookName);
             tvAuthorName = itemView.findViewById(R.id.tvAuthorName);
-            tvPopularidad = itemView.findViewById(R.id.tvPopularidad);
+            tvPop = itemView.findViewById(R.id.tvPop);
             tvEstado = itemView.findViewById(R.id.tvEstado);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -84,10 +84,15 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
         private void bind(final BookEntity be){
             this.tvBookName.setText(be.getNombre());
             this.tvAuthorName.setText(be.getAutor());
-            this.tvPopularidad.setText(be.getPopularidad());
+            if(be.getPopularidad()!=0)
+            this.tvPop.setText("" + be.getPopularidad());
             this.tvEstado.setText(be.isDisponibilidad() ? "Disponible" : "No Disponible");
 
-            Picasso.get().load(be.getImagen()).resize(200,200).centerCrop().into(this.ivImageBook);
+            if(!"".equals(be.getImagen())){
+                Picasso.get().load(be.getImagen()).resize(200,200).centerCrop().into(this.ivImageBook);
+            }else{
+                this.ivImageBook.setImageResource(R.drawable.uala);
+            }
 
         }
     }

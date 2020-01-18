@@ -33,6 +33,11 @@ public class MainViewModel extends AndroidViewModel {
         return allBooks;
     }
 
+    public LiveData<List<BookEntity>> getBookById(int id){
+        allBooks = bookRepository.getBookById(id);
+        return allBooks;
+    }
+
     public void insertBooks(List<Books> books){
         bookRepository.insertBooks(books);
     }
