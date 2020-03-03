@@ -36,11 +36,10 @@ public class BookRepository {
     }
 
 
-    // Repository for Room
 
     public LiveData<List<BookEntity>> getAllByPopularidad(){
         return books;
-    };
+    }
 
     public LiveData<List<BookEntity>> getAllByPopularidadAsc(){
         booksAsc = bookDao.getAllOrderByPopularidadAsc();
@@ -78,7 +77,7 @@ public class BookRepository {
     private static class InsertBooksTask extends AsyncTask<List<Books>, Void, Void>{
         private BookDao bookDao;
 
-        public InsertBooksTask(BookDao bookDao) {
+        private InsertBooksTask(BookDao bookDao) {
             this.bookDao = bookDao;
         }
 
